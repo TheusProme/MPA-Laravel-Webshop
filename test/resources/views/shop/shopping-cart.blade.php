@@ -79,7 +79,7 @@
                         </div>
                         <div class="col-xs-6">
                             <div class="col-xs-6 text-right">
-                                <h4><strong>{{ $product['price'] }}</strong></h4>
+                                <h4>{{ $product['quantity'] }}x <strong>Total: {{ $product['price'] }}</strong></h4>
                             </div>
                         </div>
                     </div>
