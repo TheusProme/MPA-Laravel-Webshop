@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
-    // Gets all products
+    // geeft alle producten
     public function show()
     {
         $products = \DB::table('products')->get();
@@ -22,7 +22,7 @@ class ProductController extends Controller
         ]);
     }
 
-    // Gets product with categories
+    // geeft product bij de juiste categorie 
     public function showProducts($id)
     {
         $products = \DB::table('products AS p')
@@ -42,7 +42,7 @@ class ProductController extends Controller
         ]);
     }
 
-    // Add the product to the cart
+    // voegt product toe aan winkelwagen
     public function getAddToCart(Request $request, $id)
     {
         $product = Product::find($id);
@@ -55,7 +55,7 @@ class ProductController extends Controller
         return redirect()->back();
     }
 
-    // Remove one item
+    // verwijderd 1x het product
     public function getReduceByOne($id)
     {
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
@@ -70,7 +70,7 @@ class ProductController extends Controller
 
         return redirect()->route('product.shoppingCart');
     }
-// Remove all items
+// verwijderd het product
     public function getRemoveItem($id)
     {
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
@@ -86,7 +86,7 @@ class ProductController extends Controller
         return redirect()->route('product.shoppingCart');
     }
 
-    // Increase by one item
+    // voegd 1 toe aan product
     public function getIncreaseByOne(Request $request, $id)
     {
         $product = Product::find($id);
@@ -99,7 +99,7 @@ class ProductController extends Controller
         return redirect()->back();
     }
 
-    // Gets data from current cart
+    // geeft data van winkelwagen
     public function getCart()
     {
         if (!Session::has('cart')) {
@@ -110,7 +110,7 @@ class ProductController extends Controller
         return view('shop.shopping-cart', ['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
     }
 
-    // If cart isn't null then give that data to the site and show it
+    // als wagen leeg is toon een lege winkelwagen
     public function getCheckout()
     {
         if (!Session::has('cart')) {
@@ -122,7 +122,7 @@ class ProductController extends Controller
         return view('shop.checkout', ['total' => $total]);
     }
 
-    // If form is filled in then show success
+    //formulier ingevud toon succes melding
     public function postCheckout(Request $request)
     {
         if (!Session::has('cart')) {
