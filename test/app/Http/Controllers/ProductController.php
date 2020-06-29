@@ -46,8 +46,7 @@ class ProductController extends Controller
     public function getAddToCart(Request $request, $id)
     {
         $product = Product::find($id);
-        $oldCart = Session::has('cart') ? Session::get('cart') : null;
-        $cart = new Cart($oldCart);
+        $cart = new Cart();
         $cart->add($product, $product->id);
 
         $request->session()->put('cart', $cart);
@@ -58,8 +57,7 @@ class ProductController extends Controller
     // verwijderd 1x het product
     public function getReduceByOne($id)
     {
-        $oldCart = Session::has('cart') ? Session::get('cart') : null;
-        $cart = new Cart($oldCart);
+        $cart = new Cart();
         $cart->reduceOne($id);
 
         if (count($cart->items) > 0) {
@@ -73,8 +71,7 @@ class ProductController extends Controller
 // verwijderd het product
     public function getRemoveItem($id)
     {
-        $oldCart = Session::has('cart') ? Session::get('cart') : null;
-        $cart = new Cart($oldCart);
+        $cart = new Cart();
         $cart->removeItem($id);
 
         if (count($cart->items) > 0) {
@@ -90,8 +87,8 @@ class ProductController extends Controller
     public function getIncreaseByOne(Request $request, $id)
     {
         $product = Product::find($id);
-        $oldCart = Session::has('cart') ? Session::get('cart') : null;
-        $cart = new Cart($oldCart);
+        
+        $cart = new Cart();
         $cart->add($product, $product->id);
 
         $request->session()->put('cart', $cart);
@@ -116,8 +113,7 @@ class ProductController extends Controller
         if (!Session::has('cart')) {
             return view('shop.shopping-cart');
         }
-        $oldCart = Session::get('cart');
-        $cart = new Cart($oldCart);
+        $cart = new Cart();
         $total = $cart->totalPrice;
         return view('shop.checkout', ['total' => $total]);
     }
@@ -128,8 +124,7 @@ class ProductController extends Controller
         if (!Session::has('cart')) {
             return redirect()->route('shop.shoppingCart');
         }
-        $oldCart = Session::get('cart');
-        $cart = new Cart($oldCart);
+        $cart = new Cart();
 
         $order = new Order();
         $order->cart = serialize($cart);

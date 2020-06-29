@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\Session;
+
 class Cart
 {
     // Properties
@@ -12,12 +14,15 @@ class Cart
     /**
      * Cart constructor.
      */
-    public function __construct($oldcart)
+    public function __construct()
     {
-        if ($oldcart) {
-            $this->items = $oldcart->items;
-            $this->totalQuantity = $oldcart->totalQuantity;
-            $this->totalPrice = $oldcart->totalPrice;
+
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        
+        if ($oldCart) {
+            $this->items = $oldCart->items;
+            $this->totalQuantity = $oldCart->totalQuantity;
+            $this->totalPrice = $oldCart->totalPrice;
         }
     }
 
