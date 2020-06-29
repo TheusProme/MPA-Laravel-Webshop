@@ -59,7 +59,7 @@
                 <div class="panel-body">
                     @foreach ($products as $product)
                     <div class="row">
-                        <div class="col-xs-2"><img class="img-responsive" src="http://placehold.it/100x70">
+                        <div class="col-xs-2"><img class="img-responsive" src="{{ $product['item']['image_link'] }}">
                         </div>
                         <div class="col-xs-4">
                             <h4 class="product-name"><strong>{{ $product['item']['title'] }}</strong></h4>
@@ -79,7 +79,7 @@
                         </div>
                         <div class="col-xs-6">
                             <div class="col-xs-6 text-right">
-                                <h4>{{ $product['quantity'] }}x <strong>Total: {{ $product['price'] }}</strong></h4>
+                                <h4>{{ $product['quantity'] }}x <strong>Total: €{{ $product['price'] }}</strong></h4>
                             </div>
                         </div>
                     </div>

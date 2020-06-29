@@ -2,14 +2,14 @@
     <div class="container">
         <div class="nav-heading">
             <button class="toggle-nav" data-toggle="open-navbar1"><i class="fa fa-align-right"></i></button>
-            <a class="brand" href="#">Webpaper.site</a>
+            <a class="brand" href="#">Global Dedication</a>
         </div>
         <div class="menu" id="open-navbar1">
             <ul class="list">
                 <li><a href="#">Home</a></li>
 
                 <li><a href="/categories">Category</a></li>
-                <li><a href="{{ route('home.products') }}">Products</a></li>
+                <li><a href="{{ route('home.products') }}">Podcasts</a></li>
 
                 <li><a href="{{ route('product.shoppingCart') }}">Shopping Cart
                         <span

@@ -15,7 +15,7 @@
             <div class="col-md-3">
                 <h3>{{ $product->title }}</h3>
                 <p>{{ $product->description }}</p>
-                <p>${{ $product->price }}</p>
+                <p>€{{ $product->price }}</p>
                 <a href="/products/{{ $product->id }}">Link to product</a>
             </div>
             @endforeach
